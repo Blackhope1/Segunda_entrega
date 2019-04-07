@@ -4,45 +4,27 @@ module wrapper
     use DOPRI
     use Diff_ope
     
-    
-    
-!abstract interface 
-!
-!    
-!  subroutine ODE(N,x,xv,F,RPAR,IPAR)
-!  
-!    real :: x,xv(N),F(N),RPAR
-!    INTEGER IPAR,N
-!      
-!  end subroutine 
-!    
-!end interface  
-!
-!
-!abstract interface 
-!  
-!  
-!  subroutine ODE113(x,xv,F)
-!    DOUBLE PRECISION x,xv(6),F(6)
-!      
-!  end subroutine 
-!  
-!  
-!end interface  
+   
     
 
-contains
+    contains
 
-    subroutine propagator( prop, sys, GL, t, x, tf )
+    !SUBRUTINA PROPAGATOR: Subrutina que adapta los distintos propagadores para simplificar la interfaz.
+    !ARGUMENTOS:
+    !PROP: character ("ODEX", "DOP853", "ODE113") que define el propagador a utilizar
+    !SYS: character ("non_linear", "linear") que define si se utiliza el problema completo o linealizado
+    !GL: integer, número de ecuaciones del sistema, o grados de libertad
+    !t: real, valor inicial de la variable independiente (tiempo)
+    !x: vector of reals, de tamaño GL, contiene las condiciones iniciales del problema, y devuelve los valores finales en tf
+    !tf: real, valor final de la variable independiente.
+    
+    subroutine propagator( prop, sys, GL, t, x, tf ) 
     
     character(len=*) :: prop, sys
     
     integer, intent (in) :: GL
     real, intent(in) :: t, tf
     real,intent(inout) ::  x(:)
-    
-    !procedure (ODE), optional :: FCN 
-    !procedure (ODE113), optional :: FCN_ode
     
     
     

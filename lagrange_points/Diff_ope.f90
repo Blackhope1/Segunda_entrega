@@ -7,7 +7,7 @@ module Diff_ope
     
     
     
-    function F(xv)
+    function F(xv) !Adaptado para la subrutina NEWTON
     
     
         real, intent(in) :: xv(:)
@@ -28,7 +28,7 @@ module Diff_ope
     
      
     
-    function F_linear(xv,t)
+    function F_linear(xv,t) !Adaptado para la subrutina SYSTEM_MATRIX
     
     
         real :: xv(:), t
@@ -50,7 +50,7 @@ module Diff_ope
     
     
     
-    subroutine F_prop(N,x,xv,F,RPAR,IPAR)
+    subroutine F_prop(N,x,xv,F,RPAR,IPAR) !Adaptado para las subrutinas DOP853 Y ODEX
     real :: x,xv(N),F(N),RPAR
     INTEGER IPAR,N
         real :: mu
@@ -76,7 +76,7 @@ module Diff_ope
     
     
     
-    subroutine F_lin(N,x,xv,F,RPAR,IPAR)
+    subroutine F_lin(N,x,xv,F,RPAR,IPAR) !Problema lineal adaptado para las subrutinas DOP853 Y ODEX
     DOUBLE PRECISION x,xv(N),F(N),RPAR
     INTEGER IPAR,N
     real :: A4(6,6), A1(6,6), w(6)
@@ -121,7 +121,7 @@ module Diff_ope
     
     
     
-    subroutine F_prop_ODE(x,xv,F)
+    subroutine F_prop_ODE(x,xv,F) !Adaptado para las subrutina ODE
     DOUBLE PRECISION x,xv(6),F(6)
         real :: mu
     
@@ -142,7 +142,7 @@ module Diff_ope
     
     
     
-    subroutine F_lin_ode(x,xv,F)
+    subroutine F_lin_ode(x,xv,F)  !Problema lineal adaptado para las subrutina ODE
     DOUBLE PRECISION x,xv(6),F(6)
     real :: A4(6,6), A1(6,6), w(6)
     
